@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<style>
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidenav to 120px */
+.w3-sidenav {width: 120px;background: #222;}
+/* Add a left margin to the "page content" that matches the width of the sidenav (120px) */
+#main {margin-left: 120px}
+/* Remove margins from "page content" on small screens */
+@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+
+.aa{
+    font-family: cursive;
+    font-size:5em;
+}    
+#aaa{
+  color: black
+  background:white
+
+}
+</style>
+<body class="w3-black">
+
+<!-- Icon Bar (Sidenav - hidden on small screens) -->
+<nav class="w3-sidenav w3-center w3-small w3-hide-small">
+  <!-- Avatar image in top left corner -->
+  <img src="http://a5.files.theultralinx.com/image/upload/c_fit,cs_srgb,w_620/MTI5MDI2MDEwNDU1ODEyNzM5.png" style="width:100%">
+  <a class="w3-padding-large w3-hover-black" href="/">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>HOME</p>
+  </a>
+  <a class="w3-padding-large w3-hover-black" href="/signup">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>Sign Up</p>
+  </a>
+  <a class="w3-padding-large w3-hover-black" href="/login">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>Login</p>
+  </a>
+  <a class="w3-padding-large w3-hover-black" href="/services">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>All Sensors</p>
+  </a>
+ 
+</nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <ul class="w3-navbar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <li class="w3-left" style="width:25% !important"><a href="/">HOME</a></li>
+    <li class="w3-left" style="width:25% !important"><a href="/signup">Sign Up</a></li>
+    <li class="w3-left" style="width:25% !important"><a href="#photos">Login</a></li>
+  </ul>
+</div>
+
+
+
+<div class="w3-content w3-text-grey" id="contact">
+
+
+
+    <h1 class=" w3-text-light-grey"><%= username %></h1>
+    
+
+
+
+    <h4 class="w3-text-light-grey">Active Sensors</h4>
+    <hr style="width:100%" class="w3-opacity">
+    <% if (items.length == 1 ) { %>
+
+    <p class="w3-content w3-text-grey w3-hover-text-red">
+      <label class="w3-content w3-text-grey w3-hover-text-red">Sensor Name : <label class="w3-content w3-text-grey w3-hover-text-red"><%= items[0].sensorName %></label></label>
+      <br>
+      <label class="w3-content w3-text-grey w3-hover-text-red">Sensor Location : <label class="w3-content w3-text-grey w3-hover-text-red"><%= items[0].Location %></label></label>
+    </p>
+    <br>
+    <form method="post" action="/delete">
+    <button class="w3-left w3-hover-text-red" id = "aa" >Delete Sensor</button>
+    </form>
+    <form action="/seesensors">
+    <button class="w3-left w3-hover-text-red" id = "aa" >All Sensor</button>
+    </form>
+
+    <br>
+     <hr style="width:100%" class="w3-opacity">
+     <% } else if(items.length == 2) { %>
+
+      <p class="w3-content w3-text-grey w3-hover-text-red">
+      <label class="w3-content w3-text-grey w3-hover-text-red">Sensor Name : <label class="w3-content w3-text-grey w3-hover-text-red"><%= items[0].sensorName %></label></label>
+      <br>
+      <label class="w3-content w3-text-grey w3-hover-text-red">Sensor Location : <label class="w3-content w3-text-grey w3-hover-text-red"><%= items[0].Location %></label></label>
+    </p>
+    <br>
+    <form method="post" action="/delete">
+    <button class="w3-left" id = "aa" >Delete Sensor</button>
+    </form>
+    <br>
+     <hr style="width:100%" class="w3-opacity">
+
+    
+
+    <label class="w3-content w3-text-grey w3-hover-text-red">Sensor Name : <label class="w3-content w3-text-grey w3-hover-text-red"><%= items[1].sensorName %></label></label>
+      <br>
+      <label class="w3-content w3-text-grey w3-hover-text-red">Sensor Location : <label class="w3-content w3-text-grey w3-hover-text-red"><%= items[1].Location %></label></label>
+    </p>
+    <br>
+    <form method="post" action="/delete">
+    <button class="w3-left" id = "aa" >Delete Sensor</button>
+    </form>
+    <br>     
+
+
+     <% } %>
+
+
+    
+</div>
+
+
+
+
+
+  
+
+<!-- END PAGE CONTENT -->
+
+</body>
+</html>

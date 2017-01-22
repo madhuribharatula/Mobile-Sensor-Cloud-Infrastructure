@@ -1,0 +1,35 @@
+[
+  {
+    "station_id" : "S1" ,
+    "latitude" : 37.33631625612842 ,
+    "longitude" :  -121.90412521362305,
+    "createdTime" : 1480137753084
+  },
+  {
+    "station_id" : "S2" ,
+    "latitude" : 37.325942595492634 ,
+    "longitude" :  -121.89142227172852,
+    "createdTime" : 1480137782912
+  },
+  {
+    "station_id" : "S3" ,
+    "latitude" : 37.315021405311214 ,
+    "longitude" :  -121.8848991394043,
+    "createdTime" : 1480137744960
+  },
+  {
+    "station_id" : "S4" ,
+    "latitude" : 37.307375627956574 ,
+    "longitude" :  -121.87150955200195,
+    "createdTime" :1480137770210
+  },
+  {
+    "station_id" : "S6" ,
+    "latitude" : 37.317442 ,
+    "longitude" :  -121.86395645141602,
+    "createdTime" : -121.86395645141602
+  }
+
+
+
+]

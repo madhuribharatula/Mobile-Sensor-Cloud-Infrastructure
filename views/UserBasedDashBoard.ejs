@@ -1,0 +1,189 @@
+<html>
+<head>
+    <title>Sensor Data Visualization</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/fullcalendar.css" />
+    <link rel="stylesheet" href="css/datepicker.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/colorpicker.css" />
+    <link rel="stylesheet" href="css/datepicker.css" />
+    <link rel="stylesheet" href="css/uniform.css" />
+    <link rel="stylesheet" href="css/select2.css" />
+    <link rel="stylesheet" href="css/matrix-style.css" />
+    <link rel="stylesheet" href="css/matrix-media.css" />
+    <link rel="stylesheet" href="css/bootstrap-wysihtml5.css" />
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/matrix-style.css" />
+    <link rel="stylesheet" href="css/matrix-media.css" />
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/jquery.gritter.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/locale/af.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#datepick").datepicker();
+        });
+    </script>
+</head>
+<body>
+<!--Header-part-->
+<div id="header">
+    <h1>Dashboard</h1>
+</div>
+<!--close-Header-part-->
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="/signout"><i class="icon-key"></i> Log Out</a></li>
+            </ul>
+        </li>
+        <li class=""><a title="" href="/signout"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+    </ul>
+</div>
+
+<!--close-top-serch-->
+<!--sidebar-menu-->
+<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+    <ul>
+        <li class="active"><a href="/userDashboard"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+        <li> <a href="/charts"><i class="icon icon-signal"></i> <span>Sensor Data Visualization</span></a> </li>
+        <li> <a href="/ManageSensor"><i class="icon icon-inbox"></i> <span>Manage Sensors</span></a> </li>
+        <li> <a href="/ManageSensorHub"><i class="icon icon-inbox"></i> <span>Manage Sensor Hub</span></a> </li>
+        <li><a href="/billing"><i class="icon icon-th"></i> <span>Billing</span></a></li>
+    </ul>
+</div>
+<!--sidebar-menu-->
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="/userDashboard" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+
+    <!--Action boxes-->
+    <div class="container-fluid">
+        <div class="quick-actions_homepage">
+            <ul class="quick-actions">
+                <li class="bg_lo span3"> <a href="/trainCharts"> <i class="icon-signal"></i> Train Sensor Data </a> </li>
+
+                <li class="bg_lg span3"> <a href="/charts"> <i class="icon-signal"></i> Temperature Sensor Data</a> </li>
+
+                <li class="bg_lv span3"> <a href="/locationCharts"> <i class="icon-signal"></i> Location Sensor Data</a> </li>
+
+            </ul>
+        </div>
+        <!--End-Action boxes-->
+
+    </div>
+
+<div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="widget-box">
+                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Choose the sensor and Time </h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <form class="form-horizontal" action="/getSensorData" method="get" >
+                        <div class="control-group">
+                            <label class="control-label">Select Sensor</label>
+                            <div class="controls">
+                                <select required name="selectedSensor">
+                                    <option value="">None</option>
+                                    <% for(var i=0; i < data.length; i++) { %>
+                                    <option value = "<%= data[i].Sensor_id %>"><%= data[i].Sensor_id %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+
+                        <label class="control-label">Select Date</label>
+
+                                <input type="text" id="datepick" name="selectedDate">
+
+
+
+
+                        <div class="form-actions">
+                            <input type="submit" class="btn btn-success" value="Get Data"></input>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="graph_container" style="min-width: 400px; height: 400px; margin: 43px auto"></div>
+</div>
+<!--main-container-part-->
+
+
+
+
+
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+
+<div class="row-fluid">
+    <div id="footer" class="span12"> 2016 &copy; VTA Sensor Cloud </div>
+</div>
+
+<!--end-Footer-part-->
+
+
+<script src="js/excanvas.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.ui.custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.flot.min.js"></script>
+<script src="js/jquery.flot.resize.min.js"></script>
+<script src="/js/jquery.peity.min.js"></script>
+<script src="js/fullcalendar.min.js"></script>
+<script src="js/matrix.js"></script>
+<script src="js/matrix.dashboard.js"></script>
+<script src="js/jquery.gritter.min.js"></script>
+<script src="js/matrix.interface.js"></script>
+<script src="js/matrix.chat.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script src="js/matrix.form_validation.js"></script>
+<script src="js/jquery.wizard.js"></script>
+<script src="js/jquery.uniform.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/matrix.popover.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/matrix.tables.js"></script>
+<script src="js/jquery.ui.custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-colorpicker.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.toggle.buttons.js"></script>
+<script src="js/masked.js"></script>
+<script src="js/jquery.uniform.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/matrix.js"></script>
+<script src="js/matrix.form_common.js"></script>
+<script src="js/wysihtml5-0.3.0.js"></script>
+<script src="js/jquery.peity.min.js"></script>
+<script src="js/bootstrap-wysihtml5.js"></script>
+
+
+</body>
+</html>

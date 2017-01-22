@@ -1,0 +1,40 @@
+[
+  {
+    "sensedtime" : 1480137753084 ,
+    "entity_locationId" : "train1_3" ,
+    "current_status" :  15
+  },
+  {
+    "sensedtime" : 1480137782912 ,
+    "entity_locationId" : "train1_4" ,
+    "current_status" :  25
+  },
+  {
+    "sensedtime" : 1480137744960 ,
+    "entity_locationId" : "train1_5" ,
+    "current_status" :  40
+  },
+  {
+    "sensedtime" : 1480137770210 ,
+    "entity_locationId" : "train2_4" ,
+    "current_status" :  18
+  },
+  {
+    "sensedtime" : 1480137889468 ,
+    "entity_locationId" : "train2_3" ,
+    "current_status" :  45
+  },
+  {
+    "sensedtime" : 1480137775208 ,
+    "entity_locationId" : "train2_2" ,
+    "current_status" :  26
+  },
+  {
+    "sensedtime" : 1480137789410 ,
+    "entity_locationId" : "train2_1" ,
+    "current_status" :  50
+  }
+
+
+
+]

@@ -1,0 +1,22 @@
+{
+  "name": "public",
+  "homepage": " ",
+  "authors": [
+    "Lakshmi Madhuri Bharatula"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "highcharts": "^4.2.2"
+  }
+}

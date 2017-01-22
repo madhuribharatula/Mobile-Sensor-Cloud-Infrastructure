@@ -1,0 +1,154 @@
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/highcharts/highcharts.js"></script>
+<script src="bower_components/highcharts/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+    var _startSerie=[];
+    var _startCategories=[];
+    var chart;
+
+    function loadData(){
+
+        console.log("load data")
+        $.ajax({
+
+            url:  'http://localhost:8080/service1',
+
+
+            data:{},
+
+            dataType:"json",
+            context: document.body
+        }).done(function(data) {
+            setData(data);
+        }).fail(function(jqXHR, textStatus, errorThrown){});
+    } // end loadData()
+
+
+        $
+
+    // ------------------------------------
+    function setData(data){
+
+
+        var description = "description";
+        var timestamp = "timestamp";
+        var value = "temperature";
+
+        var _val;
+        var sensor=[];
+        var categories=[];
+        var sensorObj=[];
+
+
+        for (_val in data){
+
+            if(sensor.indexOf(data[_val][description])==-1){
+                sensor.push(data[_val][description]);
+                sensorObj.push({name:data[_val][description],data:[]});
+            }
+
+            if(categories.indexOf(data[_val][timestamp])==-1) {
+                categories.push(data[_val][timestamp]);
+            }
+        }
+
+        function formatLabel() {
+            var _arr = [];
+            for(var i=0; i<categories.length; i++) {
+                _arr.push(format(categories[i]));
+            }
+
+            return _arr;
+        }
+
+
+        _startCategories=formatLabel();
+
+        console.log(_startCategories)
+
+
+        for (var i=0; i<sensor.length; i++) {
+            for (_val in data){
+                if(data[_val][description]==sensor[i]){
+                    sensorObj[i].data.push(data[_val][value])
+                }
+            }
+        }
+
+        //se è la prima chiamata, creo un obj per la chart e chiamo il setup
+        if(chart==undefined){
+
+            for (var i=0; i<sensor.length; i++) {
+                _startSerie.push( {name:sensor[i], data:sensorObj[i].data} );
+            }
+
+            setupChart();
+
+        } else {
+            //nelle chiamate successive effettuo l'update della chart
+            chart = $('#container').highcharts();
+            chart.xAxis[0].setCategories(_startCategories);
+            for (var i=0; i<sensor.length; i++) {
+                chart.series[i].setData(sensorObj[i].data);
+            }
+        }
+    }
+
+    function format(_date) {
+        var _date = new Date(_date);
+        return dateFormat(_date, "custom");
+    }
+
+    function setupChart(){
+
+        chart = $('#container').highcharts({
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Count of passengers in a train'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: _startCategories,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of passengers'
+                }
+            },
+            tooltip: {
+                //headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                //pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                //    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                //footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: _startSerie
+        });
+    }
+
+
+    $(function(){
+        // refresh page date in milliseconds
+        setInterval(loadData,5000);
+    });
+
+
+</script>
+

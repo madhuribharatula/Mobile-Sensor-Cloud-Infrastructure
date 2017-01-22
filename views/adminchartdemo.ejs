@@ -1,0 +1,200 @@
+<html>
+<head>
+    <title>Sensor Data Visualization</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/fullcalendar.css" />
+    <link rel="stylesheet" href="css/matrix-style.css" />
+    <link rel="stylesheet" href="css/matrix-media.css" />
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/jquery.gritter.css" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/locale/af.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <script src="http://code.highcharts.com/modules/no-data-to-display.js"></script>
+
+
+</head>
+<body>
+<!--Header-part-->
+<div id="header">
+    <h1>Dashboard</h1>
+</div>
+<!--close-Header-part-->
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="/signout"><i class="icon-key"></i> Log Out</a></li>
+            </ul>
+        </li>
+        <li class=""><a title="" href="/signout"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+    </ul>
+</div>
+
+<!--close-top-serch-->
+<!--sidebar-menu--><div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+    <ul>
+        <li class="active"><a href="/adminDashboard"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+        <li> <a href="/admincharts"><i class="icon icon-signal"></i> <span>Sensor Monitor Visualization</span></a> </li>
+        <li> <a href="/Manageusers"><i class="icon icon-inbox"></i> <span>User summary</span></a> </li>
+    </ul>
+</div>
+<!--sidebar-menu-->
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="/adminDashboard" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+
+    <!--Action boxes-->
+    <div class="container-fluid">
+        <div class="quick-actions_homepage">
+            <ul class="quick-actions">
+                <li class="bg_lb"> <a href="/adminDashboard"> <i class="icon-dashboard"></i>  My Dashboard </a> </li>
+                <li class="bg_lg span3"> <a href="/admincharts"> <i class="icon-signal"></i> Sensor Monitor Visualization</a> </li>
+                <li class="bg_ly"> <a href="/Manageusers"> <i class="icon-inbox"></i>User summary</a> </li>
+
+            </ul>
+        </div>
+        <!--End-Action boxes-->
+
+    </div>
+
+    <div id="graph_container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<div class="row-fluid">
+
+    <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>Sensor Status</h5>
+            <span class="label label-info">Sensor Status</span> </div>
+        <div class="widget-content ">
+
+            <table id="datatable" class="table table-bordered table-striped with-check">
+                <thead>
+                <tr>
+                    <th>Sensor Type</th>
+                    <th>Number of sensors</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for(var i=0; i < data.length; i++) { %>
+                <tr>
+
+                    <td><%= data[i].Sensor_type%></td>
+                    <td><%= data[i].count %></td>
+                </tr>
+                <% } %>
+                </tbody>
+            </table>
+
+
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+
+
+    $(function () {
+
+        Highcharts.chart('graph_container', {
+            data: {
+                table: 'datatable'
+            },
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Sensor Type'
+            },
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: 'Number of sensors'
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        this.point.y + ' ' + this.point.name.toLowerCase();
+                }
+            }
+        });
+    });
+    </script>
+
+
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+
+<div class="row-fluid">
+    <div id="footer" class="span12"> 2016 &copy; VTA Sensor Cloud </div>
+</div>
+
+<!--end-Footer-part-->
+
+<script src="js/excanvas.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.ui.custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.flot.min.js"></script>
+<script src="js/jquery.flot.resize.min.js"></script>
+<script src="js/jquery.peity.min.js"></script>
+<script src="js/fullcalendar.min.js"></script>
+<script src="js/matrix.js"></script>
+<script src="js/matrix.dashboard.js"></script>
+<script src="js/jquery.gritter.min.js"></script>
+<script src="js/matrix.interface.js"></script>
+<script src="js/matrix.chat.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script src="js/matrix.form_validation.js"></script>
+<script src="js/jquery.wizard.js"></script>
+<script src="js/jquery.uniform.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/matrix.popover.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/matrix.tables.js"></script>
+
+<script type="text/javascript">
+
+    function goPage (newURL) {
+
+        // if url is empty, skip the menu dividers and reset the menu selection to default
+        if (newURL != "") {
+
+            // if url is "-", it is this page -- reset the menu:
+            if (newURL == "-" ) {
+                resetMenu();
+            }
+            // else, send page to designated URL
+            else {
+                document.location.href = newURL;
+            }
+        }
+    }
+
+
+    function resetMenu() {
+        document.gomenu.selector.selectedIndex = 2;
+    }
+</script>
+</body>
+</html>

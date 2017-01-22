@@ -1,0 +1,50 @@
+
+
+
+[
+  {
+    "sensedtime" : 1480137753084 ,
+    "entity_locationId" : "train1" ,
+    "current_status" :  15,
+    "station_id" : 1
+  },
+  {
+    "sensedtime" : 1480137782912 ,
+    "entity_locationId" : "train1" ,
+    "current_status" :  25,
+    "station_id" : 2
+  },
+  {
+    "sensedtime" : 1480137744960 ,
+    "entity_locationId" : "train1" ,
+    "current_status" :  40,
+    "station_id" : 3
+  },
+  {
+    "sensedtime" : 1480137770210 ,
+    "entity_locationId" : "train2" ,
+    "current_status" :  18,
+    "station_id" : 1
+  },
+  {
+    "sensedtime" : 1480137889468 ,
+    "entity_locationId" : "train2" ,
+    "current_status" :  45,
+    "station_id" : 2
+  },
+  {
+    "sensedtime" : 1480137775208 ,
+    "entity_locationId" : "train2" ,
+    "current_status" :  26,
+    "station_id" : 3
+  },
+  {
+    "sensedtime" : 1480137789410 ,
+    "entity_locationId" : "train2" ,
+    "current_status" :  50,
+    "station_id" : 4
+  }
+
+
+
+]

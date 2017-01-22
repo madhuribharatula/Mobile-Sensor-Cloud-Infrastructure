@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h2{font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+p {line-height: 2}
+.bgimg, .bgimg2 {
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+    .yy{
+        font-family : cursive;
+        font-size : 4em;
+    }
+.bgimg {background-image: url("http://freedomreply.com/wp-content/uploads/2014/07/Free-Download-Background-Images-For-Website-Design-3.jpg")}
+.bgimg2 {background-image: url("http://freedomreply.com/wp-content/uploads/2014/07/Free-Download-Background-Images-For-Website-Design-3.jpg")}
+
+</style>
+<body>
+
+<!-- Header / Home-->
+<header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
+  <div class="w3-display-middle w3-text-white w3-center">
+    <h1 class="yy">Mobile Cloud Sensors</h1>
+    <h2>Choose Among The Sensor Services</h2>
+    <h6><b>Scroll Down to view the Services</b></h6>
+  </div>
+</header>
+
+<!-- Navbar (sticky bottom) -->
+<div class="w3-bottom w3-hide-small">
+  <ul class="w3-navbar w3-white w3-center w3-padding-8 w3-opacity-min w3-hover-opacity-off">
+    <li style="width:33%"><a href="/" class="w3-margin-left w3-round">Home</a></li>
+    <li style="width:33%"><a href="#us" class="w3-round">Temperature Sensor</a></li>
+    <li style="width:33%"><a href="#wedding" class="w3-round">GPS Sensor</a></li>
+  </ul>
+</div>
+
+
+<div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min" id="us">
+  <div class="w3-content">
+    <h1 class="w3-center w3-text-grey"><b>Temperature Sensor</b></h1>
+    <img class="w3-round w3-grayscale-min" src="https://static.bhphotovideo.com/explora/sites/default/files/Color-Temperature.jpg">
+    <p><i>With the ConnectSense Wireless Temperature Sensor, measuring Temperature and Humidity data has never been easier. ConnectSense accurately measures your data and alerts you based on rules you set up. This way, you’re notified of changes in your environment before they become a costly problem. </i>
+    </p><br>
+    <form action="/userdatatemp" method="post">
+    <button style="background-color:#ECE0E0" class="w3-btn w3-round w3-padding-large w3-large"  type="submit" ><a class="w3-btn w3-round w3-padding-large w3-large">Add Sensor</a></button>
+	</form>
+	<form action="/seesensors">
+		<button style="background-color:#ECE0E0" class="w3-btn w3-round w3-padding-large w3-large"  type="submit" ><a class="w3-btn w3-round w3-padding-large w3-large">Current Sensor</a></button>
+	</form>
+
+  </div>
+</div>
+
+
+
+<div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min" id="us">
+  <div class="w3-content">
+    <h1 class="w3-center w3-text-grey"><b>GPS Sensor</b></h1>
+    <img class="w3-round w3-grayscale-min" src="http://www.afb.org/image.ashx?ImageID=7252">
+    <p><i>With the GPS Sensor, getting the location has never been easier. These devices enable tracking and or monitoring of just about any remote asset, regardless of whether it has a power supply or no power at all. </i>
+    </p><br>
+     <form action="/userdatagps" method="post">
+    <button style="background-color:#ECE0E0" class="w3-btn w3-round w3-padding-large w3-large"  type="submit" ><a class="w3-btn w3-round w3-padding-large w3-large">Add Sensor</a></button>
+	</form>
+	<form action="/seesensors">
+		<button style="background-color:#ECE0E0" class="w3-btn w3-round w3-padding-large w3-large"  type="submit" ><a class="w3-btn w3-round w3-padding-large w3-large">Current Sensor</a></button>
+	</form>
+
+      
+  </div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>Powered by <a href="http://www.avdeepsandhu.com" title="W3.CSS" target="_blank" class="w3-hover-text-green">www.avdeepsandhu.com</a></p>
+</footer>
+<div class="w3-hide-small" style="margin-bottom:32px"> </div>
+
+</body>
+</html>
